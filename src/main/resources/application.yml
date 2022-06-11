@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:liquibase-demo-db
+    connectionProperties: useUnicode=true;characterEncoding=utf-8;
+    sqlScriptEncoding: utf-8
+    username: sa
+    password: sa
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: true
+  h2:
+    console.enabled: true
