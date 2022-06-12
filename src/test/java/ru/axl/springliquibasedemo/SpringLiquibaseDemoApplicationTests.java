@@ -3,7 +3,7 @@ package ru.axl.springliquibasedemo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import ru.axl.springliquibasedemo.controller.MainController;
+import ru.axl.springliquibasedemo.controller.TestController;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,11 +11,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 class SpringLiquibaseDemoApplicationTests {
 
 	@Autowired
-	private MainController mainController;
+	private TestController testController;
 
 	@Test
 	void contextLoads() {
-		assertThat(mainController).isNotNull();
+		assertThat(testController).isNotNull();
 	}
 
 }

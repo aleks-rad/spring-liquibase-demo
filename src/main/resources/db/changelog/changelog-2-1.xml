@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="2.1.1" author="Aleksey Radionenko">
+        <preConditions>
+            <not>
+                <tableExists tableName="items"/>
+            </not>
+        </preConditions>
+        <createTable tableName="items" remarks="Элемент заказа">
+            <column name="item_id" type="BIGSERIAL" remarks="Уникальный идентификатор элемента заказа">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="product_id" type="BIGSERIAL" remarks="Внешний ключ товара">
+                <constraints nullable="false" foreignKeyName="fk_items_product" references="products(product_id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2.1.2" author="Aleksey Radionenko">
+        <preConditions>
+            <not>
+                <tableExists tableName="orders"/>
+            </not>
+        </preConditions>
+        <createTable tableName="orders" remarks="Заказ">
+            <column name="order_id" type="BIGSERIAL" remarks="Уникальный идентификатор заказа">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2.1.3" author="Aleksey Radionenko">
+        <preConditions>
+            <not>
+                <tableExists tableName="order_items"/>
+            </not>
+        </preConditions>
+        <createTable tableName="order_items" remarks="Таблица для связи заказов с его элементами">
+            <column name="order_id" type="BIGSERIAL" remarks="Уникальный идентификатор заказа">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_order_items"/>
+            </column>
+            <column name="item_id" type="BIGSERIAL" remarks="Уникальный идентификатор элемента заказа">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_order_items"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
